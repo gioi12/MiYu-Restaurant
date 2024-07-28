@@ -1,0 +1,35 @@
+﻿<Window x:Class="MiYu.EmployeeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiYu"
+        mc:Ignorable="d"
+        Title="EmployeeView" Height="600" Width="1000" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="900"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Label Content="MiYu" FontWeight="Bold" />
+            <Label Name="lbhello" Content="hello A"/>
+            <Button Content="Table" Margin="10" Name="btTable" Click="Button_Click_Table"/>
+            <Button Content="Order" Margin="10" Click="Button_Click_Order"/>
+            <Button Content="Pre-Order" Margin="10" Name="PreOrder" Click="PreOrder_Click"/>
+            <Button Content="Attendence" Margin="10" Click="Button_Click_att"/>
+            <Button Content="Profile" Margin="10" Name="profile" Click="profile_Click"/>
+            <Button Content="Exit" Margin="10" Name="exit" Click="exit_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Viewbox  Name="ContainerEmployee">
+
+            </Viewbox>
+        </StackPanel>
+        
+    </Grid>
+</Window>

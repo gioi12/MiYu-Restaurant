@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="MiYu.OrderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MiYu"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="Page_Loaded">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="300"/>
+
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Left" Width="413" Grid.Row="0" Grid.Column="0" >
+            <ComboBox Name="cbFloor" Width="200" Margin="10" DisplayMemberPath="Name" SelectedValuePath="Id" SelectionChanged="cbFloor_SelectionChanged" SelectedIndex="0"/>
+            <ListView x:Name="lvTables">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}"/>
+                        <GridViewColumn Header="Table" DisplayMemberBinding="{Binding Path=Name}" />
+                        <GridViewColumn Header="Floor" DisplayMemberBinding="{Binding Path=Floor}" />
+                        <GridViewColumn Header="Status Table" DisplayMemberBinding="{Binding Path=StatusTable.Status.Name}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,64,0">
+            <Label Content="Order" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <Label Content="Table"/>
+            <TextBox x:Name="txIdTable" Visibility="Collapsed" Text="{Binding Path=Id , Mode=OneWay}" DataContext="{Binding ElementName=lvTables,Path=SelectedItem}" />
+            <TextBox x:Name="txOrderTable" Height="23" Width="235" HorizontalAlignment="Center" Text="{Binding Path=Name , Mode=OneWay}" DataContext="{Binding ElementName=lvTables,Path=SelectedItem}"/>
+            <Label Content="Floor"/>
+            <TextBox x:Name="txFloor" Text="{Binding Path=Floor , Mode=OneWay}" DataContext="{Binding ElementName=lvTables,Path=SelectedItem}" Height="25"/>
+            <Label Content="Status"/>
+            <TextBox x:Name="txStatusTable" IsReadOnly="True" Height="24" Width="236" HorizontalAlignment="Center"  Text="{Binding Path=StatusTable.Status.Name , Mode=OneWay}" DataContext="{Binding ElementName=lvTables,Path=SelectedItem}" Background="LightGray"/>
+            <Button x:Name="btOrderTable" Margin="10" Height="27" Content="New/View Detail" Width="154" Click="btOrderTable_Click"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

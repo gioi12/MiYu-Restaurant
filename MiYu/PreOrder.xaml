@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="MiYu.PreOrder"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:MiYu"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="300"/>
+
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Left" Width="413" Grid.Row="0" Grid.Column="0" >
+            <Label Content="Bookings PreOrder Information" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <ListView x:Name="lvTables" Height="150">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}"/>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
+                        <GridViewColumn Header="Time Arrivel" DisplayMemberBinding="{Binding Path=Time}" />
+                        <GridViewColumn Header="Number People" DisplayMemberBinding="{Binding Path=Number}"/>
+                         <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Path=StatusName}"/>
+                        <GridViewColumn Header="Employee" DisplayMemberBinding="{Binding Path=EmployeeName}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ComboBox Name="cbFloor" Width="200" Margin="10" DisplayMemberPath="Name" SelectedValuePath="Id" SelectionChanged="cbFloor_SelectionChanged" SelectedIndex="0"/>
+            <ListView x:Name="lvTablesOrder" Height="155">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="Table" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Floor" DisplayMemberBinding="{Binding Floor}" />
+                        <GridViewColumn Header="Status Table" DisplayMemberBinding="{Binding StatusTable.Status.Name}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,64,0">
+            <Label Content="PreOrder Detail" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <Label Content="Name"/>
+            <TextBox Name="txName" Height="23" Text="{Binding Path=Name,Mode=OneWay}" DataContext="{Binding ElementName=lvTables,Path=SelectedItem}"/>
+            
+            <Label Content="Time Arrivel"/>
+
+            <xctk:DateTimePicker x:Name="dtTime" Format="Custom" FormatString="yyyy/MM/dd HH:mm"
+                                 Text="{Binding Path=Time,Mode=OneWay}" DataContext="{Binding ElementName=lvTables,Path=SelectedItem}"/>
+
+            <Label Content="Number People"/>
+            <TextBox x:Name="txNumber" Height="28"
+                     Text="{Binding Path=Number,Mode=OneWay}" DataContext="{Binding ElementName=lvTables,Path=SelectedItem}"/>
+            <Label Content="Table"/>
+            <TextBox Name="txID" Visibility="Collapsed" Text="{Binding Path=TableId,Mode=OneWay}" DataContext="{Binding ElementName=lvTables,Path=SelectedItem}" Height="24" />
+
+            <TextBox x:Name="txTable"  Text="{Binding Path=TableName,Mode=OneWay}" DataContext="{Binding ElementName=lvTables,Path=SelectedItem}" Height="24" />
+            <Label Content="Floor"/>
+            <TextBox x:Name="txFloor" Text="{Binding Path=Floor,Mode=OneWay}" DataContext="{Binding ElementName=lvTables,Path=SelectedItem}" Height="25" />
+            <Label Content="Status"/>
+            <TextBox x:Name="txStatus" Height="26" IsReadOnly="True" Background="LightGray"
+                     Text="{Binding Path=StatusName,Mode=OneWay}" DataContext="{Binding ElementName=lvTables,Path=SelectedItem}"/>
+            <Grid Width="108" Height="24">
+                <Button Content="Arrived" Margin="-65,10,103,-10" Name="arrived" Click="arrived_Click"/>
+                <Button Content="New" Margin="18,10,18,-10" Name="new" Click="new_Click"/>
+                <Button Content="Cancel" Margin="103,10,-63,-10" Name="cancel" Click="cancel_Click"/>
+            </Grid>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

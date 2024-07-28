@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="MiYu.ProfileEmployee"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MiYu"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="800"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Label Content="PROFILE" FontWeight="Bold" HorizontalAlignment="Left"/>
+            <Label Name="EmId"/>
+            <Label Name="EmName"/>
+            <Label Name="emDate"/>
+            <Label Name="EmGender"/>
+            <Label Content="INFORMATION CONTACE"  FontWeight="Bold" HorizontalAlignment="Left" />
+            <Label Name="EmPhone"/>
+            <Label Name="EmMail"/>
+            <Label Name="EmAddress"/>
+            <Label Content="EMPLOYEE POSITION"  FontWeight="Bold" HorizontalAlignment="Left" />
+            <Label Name="EmPosition"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
